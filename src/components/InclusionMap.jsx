@@ -158,7 +158,7 @@ export default function InclusionMap({ lang = 'en', t }) {
 
         map.on('click', 'states-fill', (e) => {
           if (e.features && e.features.length > 0) {
-            const stName = e.features[0].properties.ST_NM;
+            const stName = e.features[0].properties.NAME_1 || e.features[0].properties.ST_NM;
             const fid = e.features[0].id;
 
             if (selectedFeatureIdRef.current !== null) {
@@ -200,7 +200,10 @@ export default function InclusionMap({ lang = 'en', t }) {
   };
 
   return (
-    <div className="flex flex-col h-[750px] w-full bg-slate-900 text-white rounded-2xl overflow-hidden shadow-2xl border border-slate-800 relative">
+    <div 
+      className="bg-slate-900 text-white rounded-2xl overflow-hidden shadow-2xl border border-slate-800 relative"
+      style={{ display: 'flex', flexDirection: 'column', height: '80vh', width: '100%' }}
+    >
       {/* Top Banner */}
       <div className="bg-slate-800/90 border-b border-slate-700/80 px-6 py-4 flex items-center justify-between z-10 backdrop-blur">
         <div>
@@ -224,15 +227,20 @@ export default function InclusionMap({ lang = 'en', t }) {
       </div>
 
       {/* Main Map & Directory Grid */}
-      <div className="flex-1 flex flex-col md:flex-row relative overflow-hidden">
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'row', width: '100%', position: 'relative', overflow: 'hidden' }}>
         {/* Map Viewport */}
-        <div ref={mapContainerRef} className="flex-1 w-full h-full min-h-[400px]" />
+        <div ref={mapContainerRef} style={{ flex: 1, width: '100%', height: '100%', minHeight: '400px' }} />
 
         {/* Floating / Collapsible Sidebar */}
         <div
-          className={`transition-all duration-300 flex flex-col bg-slate-900/95 border-l border-slate-800 backdrop-blur z-10 ${
-            isSidebarOpen ? 'w-full md:w-96' : 'w-12'
-          }`}
+          className="bg-slate-900/95 border-l border-slate-800 backdrop-blur z-10"
+          style={{ 
+            transition: 'all 0.3s', 
+            display: 'flex', 
+            flexDirection: 'column',
+            width: isSidebarOpen ? '384px' : '48px',
+            minWidth: isSidebarOpen ? '384px' : '48px'
+          }}
         >
           <div className="p-3 border-b border-slate-800 flex items-center justify-between bg-slate-800/40">
             {isSidebarOpen && (
