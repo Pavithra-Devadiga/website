@@ -121,6 +121,9 @@ export const STATE_NAMES = {
   "West Bengal": { en: "West Bengal", hi: "पश्चिम बंगाल", kn: "ಪಶ್ಚಿಮ ಬಂಗಾಳ" },
 };
 
+const topDisabilities = ["Locomotor", "Visual", "Hearing", "Speech"];
+const topLanguages = ["Hindi", "English", "Regional"];
+const schemes = ["ADIP Scheme", "UDID Card", "Niramaya Health Insurance"];
 export const DEFAULT_STATE_DATA = {
   disabilityPercent: 2.21,
   disabilityCount: "2.21% of population",

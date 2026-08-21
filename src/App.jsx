@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import translations from './i18n';
 import TopNavbar from './components/TopNavbar';
 import Dashboard from './components/Dashboard';
-import DocumentReader from './components/DocumentReader';
+import SmartDoc from './components/SmartDoc/SmartDoc';
 import VoiceSuite from './components/VoiceSuite';
 import InclusionMap from './components/InclusionMap';
 import Simulators from './components/Simulators';
@@ -618,7 +618,7 @@ export default function App() {
         </div>
 
         <div className={`workspace-panel ${activePanel === 'panel-reader' ? 'active' : ''}`}>
-          <DocumentReader t={t} lang={lang} speakFeedback={speakFeedback} />
+          <SmartDoc t={t} lang={lang} speakFeedback={speakFeedback} />
         </div>
 
         <div className={`workspace-panel ${activePanel === 'panel-voice' ? 'active' : ''}`}>
