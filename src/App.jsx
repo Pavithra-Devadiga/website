@@ -1233,18 +1233,20 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
       return;
     }
 
-    // Default Sandbox Sign-in
-    const emailToUse = authEmail || "guest.citizen@gmail.com";
-    const nameToUse = authName || emailToUse.split("@")[0];
-
-    setUserName(nameToUse);
-    setUserEmail(emailToUse);
+    // Mock Google authentication fallback from team updates
+    setUserName("Guest User");
+    setUserEmail("guest@codefury.com");
+    setIsSuccessBadgeVisible(true);
+    speakFeedback("Authenticated via Google. Welcome Guest!");
+    
+    // Auto-login sandbox session
     setIsAuthenticated(true);
     setShowAuthModal(false);
 
+    // Save session
     const stateToSave = {
-      userName: nameToUse,
-      userEmail: emailToUse,
+      userName: "Guest User",
+      userEmail: "guest@codefury.com",
       lang,
       fontScale,
       dyslexiaMode,
@@ -1256,7 +1258,6 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
       isDarkMode
     };
     localStorage.setItem("aura_react_profile", JSON.stringify(stateToSave));
-    speakFeedback(`Access granted. Welcome back ${nameToUse}`);
   };
 
   const handleLogout = () => {
