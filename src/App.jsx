@@ -1553,8 +1553,8 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                     {/* Tab Toggles for Sign In / Sign Up */}
                     <div style={{
                       display: 'flex',
-                      background: 'transparent',
-                      border: '1.5px solid var(--border-color)',
+                      background: 'rgba(255,255,255,0.02)',
+                      border: '1.5px solid rgba(255,255,255,0.05)',
                       borderRadius: '10px',
                       padding: '4px',
                       width: '100%'
@@ -1564,14 +1564,15 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                         onClick={() => { setAuthMode("signin"); setAuthError(""); }}
                         style={{
                           flex: 1,
-                          padding: '8px 0',
-                          fontSize: '0.76rem',
+                          padding: '10px 0',
+                          fontSize: '0.8rem',
                           fontWeight: 'bold',
                           borderRadius: '8px',
-                          background: authMode === "signin" ? 'var(--primary-blue)' : 'transparent',
+                          background: authMode === "signin" ? 'linear-gradient(135deg, var(--neon-cyan), var(--primary-blue))' : 'transparent',
                           color: authMode === "signin" ? '#ffffff' : 'var(--text-muted)',
                           border: 'none',
                           cursor: 'pointer',
+                          boxShadow: authMode === "signin" ? '0 4px 15px rgba(0, 240, 255, 0.3)' : 'none',
                           transition: 'all 0.2s ease'
                         }}
                       >
@@ -1582,14 +1583,15 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                         onClick={() => { setAuthMode("register"); setAuthError(""); }}
                         style={{
                           flex: 1,
-                          padding: '8px 0',
-                          fontSize: '0.76rem',
+                          padding: '10px 0',
+                          fontSize: '0.8rem',
                           fontWeight: 'bold',
                           borderRadius: '8px',
-                          background: authMode === "register" ? 'var(--primary-blue)' : 'transparent',
+                          background: authMode === "register" ? 'linear-gradient(135deg, var(--neon-magenta), #7c3aed)' : 'transparent',
                           color: authMode === "register" ? '#ffffff' : 'var(--text-muted)',
                           border: 'none',
                           cursor: 'pointer',
+                          boxShadow: authMode === "register" ? '0 4px 15px rgba(168, 85, 247, 0.3)' : 'none',
                           transition: 'all 0.2s ease'
                         }}
                       >
@@ -1852,6 +1854,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
         voiceGuidanceEnabled={voiceGuidanceEnabled}
         setVoiceGuidanceEnabled={setVoiceGuidanceEnabled}
         speakFeedback={speakFeedback}
+        isAuthenticated={isAuthenticated}
         isClerkActive={isClerkActive}
         clerkUserButton={clerkUserButton}
       />
@@ -1989,41 +1992,28 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
           {/* Floating Hologram Orb Button */}
           <button 
             type="button"
-            className="floating-holo-orb-btn"
+            className="sulabha-fab"
             onClick={() => setIsFloatingChatOpen(!isFloatingChatOpen)}
-            title="Toggle AURA Companion Chat"
+            title="Toggle SULABHA Assistant"
           >
-            <div className="floating-orb-outer"></div>
-            <div className="floating-orb-inner"></div>
             <i className="fa-solid fa-robot"></i>
           </button>
 
-          {/* Floating Glass Chat Drawer */}
+          {/* SULABHA Assistant Drawer */}
           {isFloatingChatOpen && (
-            <div className="floating-chat-drawer" style={{ padding: '0px', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'absolute', top: '10px', right: '10px', zIndex: 10 }}>
-                <button 
-                  type="button" 
-                  className="compact-btn" 
-                  style={{ padding: '2px 8px', borderColor: 'var(--neon-magenta)', color: 'var(--neon-magenta)', background: 'rgba(15,18,36,0.8)' }}
-                  onClick={() => setIsFloatingChatOpen(false)}
-                >
-                  <i className="fa-solid fa-xmark"></i> Close
-                </button>
-              </div>
-              <ChatBotWidget 
-                messages={messages}
-                onSendMessage={handleSendChatMessage}
-                speakFeedback={speakFeedback}
-                t={t}
-              />
-            </div>
+            <ChatBotWidget 
+              messages={messages}
+              onSendMessage={handleSendChatMessage}
+              speakFeedback={speakFeedback}
+              t={t}
+              onClose={() => setIsFloatingChatOpen(false)}
+            />
           )}
 
           {/* Floating Back to Top button */}
           <button 
             type="button" 
-            className="floating-back-to-top-btn" 
+            className="sulabha-back-to-top" 
             onClick={scrollToTop} 
             title="Scroll to Top"
           >

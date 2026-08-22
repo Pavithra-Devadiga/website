@@ -19,7 +19,8 @@ export default function ChatBotWidget({
   messages = [], 
   onSendMessage, 
   speakFeedback, 
-  t 
+  t,
+  onClose
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [chatInput, setChatInput] = useState("");
@@ -212,31 +213,37 @@ export default function ChatBotWidget({
   };
 
   return (
-    <div className="w-full h-full flex flex-col overflow-hidden shadow-2xl" style={{ fontFamily: 'Inter, sans-serif', background: 'var(--card-bg)', borderRadius: '24px', border: '1px solid var(--border-color)' }}>
+    <div className="sulabha-drawer">
       
       {/* Header */}
-      <div className="pt-8 px-4 pb-4 flex flex-col items-center shrink-0 border-b border-transparent relative" style={{ borderBottomColor: 'rgba(255,255,255,0.05)' }}>
-        <button
-          onClick={() => setAutoAudio(!autoAudio)}
-          className="absolute top-4 left-4 w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer text-xs"
-          style={{ background: 'var(--card-hover-bg)', color: autoAudio ? 'var(--primary-blue)' : 'var(--text-muted)' }}
-          title={autoAudio ? "Auto-speak ON" : "Auto-speak OFF"}
-        >
-          {autoAudio ? <i className="fa-solid fa-volume-high"></i> : <i className="fa-solid fa-volume-xmark"></i>}
-        </button>
-        <div className="flex items-center gap-2 mb-2 mt-2">
-          <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px]" style={{ background: 'var(--primary-blue)', color: '#ffffff' }}>
+      <div className="sulabha-header">
+        <div className="sulabha-header-title">
+          <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px]" style={{ background: 'var(--primary-blue)', color: '#ffffff' }}>
             <i className="fa-solid fa-robot"></i>
           </div>
-          <h3 className="text-lg font-bold" style={{ color: 'var(--primary-blue)' }}>SULABHA Assistant</h3>
+          SULABHA Assistant
         </div>
-        <div className="text-center px-4 py-2 rounded-xl text-xs leading-relaxed" style={{ background: 'var(--card-hover-bg)', color: 'var(--text-muted)' }}>
-          I can answer all your questions.<br/>(Ask me anything)
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <button
+            onClick={() => setAutoAudio(!autoAudio)}
+            className="sulabha-close-btn"
+            title={autoAudio ? "Auto-speak ON" : "Auto-speak OFF"}
+          >
+            {autoAudio ? <i className="fa-solid fa-volume-high"></i> : <i className="fa-solid fa-volume-xmark"></i>}
+          </button>
+          <button 
+            className="sulabha-close-btn" 
+            onClick={onClose} 
+            title="Close Assistant"
+          >
+            <i className="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-5 text-[0.9rem] text-left no-scrollbar" style={{ overflowX: 'hidden' }}>
+      <div className="sulabha-messages">
         {chatLog.map((m, idx) => (
           <div
             key={idx}
@@ -244,12 +251,12 @@ export default function ChatBotWidget({
           >
             {m.sender === "user" ? (
               <div
-                className="p-3.5 leading-relaxed shadow-sm"
+                className="p-3 leading-relaxed shadow-md text-[0.9rem]"
                 style={{
-                  backgroundColor: 'var(--primary-blue)',
+                  backgroundColor: '#005c4b', /* WhatsApp outgoing dark mode */
                   color: '#ffffff',
                   borderRadius: '16px',
-                  borderBottomRightRadius: '4px',
+                  borderBottomRightRadius: '0px',
                   maxWidth: '85%'
                 }}
               >
@@ -258,22 +265,20 @@ export default function ChatBotWidget({
             ) : (
               <div className="flex flex-col items-start max-w-[90%]">
                 <div
-                  className="p-4 leading-relaxed"
+                  className="p-3 leading-relaxed shadow-md text-[0.9rem]"
                   style={{
-                    backgroundColor: 'transparent',
-                    color: 'var(--text-main)',
-                    border: '1.5px solid var(--primary-blue)',
+                    backgroundColor: '#202c33', /* WhatsApp incoming dark mode */
+                    color: '#ffffff',
                     borderRadius: '16px',
-                    borderBottomLeftRadius: '4px',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
+                    borderBottomLeftRadius: '0px',
                   }}
                 >
                   {m.text}
                 </div>
                 <button
                   onClick={() => speakText(m.text)}
-                  className="text-[11px] mt-2 flex items-center gap-1.5 px-1 bg-none border-none cursor-pointer"
-                  style={{ color: 'var(--text-muted)', fontWeight: '600' }}
+                  className="text-[10px] mt-1 flex items-center gap-1 bg-none border-none cursor-pointer"
+                  style={{ color: 'var(--text-muted)' }}
                 >
                   <i className="fa-solid fa-play" style={{ color: 'var(--primary-blue)' }}></i> Listen
                 </button>
@@ -290,36 +295,31 @@ export default function ChatBotWidget({
           e.preventDefault();
           handleSend();
         }}
-        className="p-3 flex items-center gap-2 shrink-0 border-t border-transparent pb-4"
-        style={{ borderTopColor: 'rgba(255,255,255,0.05)', background: 'transparent' }}
+        className="sulabha-input-row"
       >
-        <div className="flex-1 flex items-center min-w-0 rounded-full px-4 py-3" style={{ background: 'var(--card-hover-bg)', border: '1px solid var(--border-color)' }}>
-          <input
-            type="text"
-            value={chatInput}
-            onChange={(e) => setChatInput(e.target.value)}
-            placeholder="Ask me anything..."
-            className="w-full bg-transparent focus:outline-none min-w-0 text-[0.95rem]"
-            style={{ color: 'var(--text-main)' }}
-          />
-          <button
-            type="button"
-            onClick={handleDictate}
-            className={`ml-2 w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer shrink-0 ${isMicActive ? "animate-pulse" : ""}`}
-            style={{ color: isMicActive ? 'var(--neon-magenta)' : 'var(--text-muted)' }}
-            title="Voice Input"
-          >
-            {isMicActive ? <i className="fa-solid fa-square"></i> : <i className="fa-solid fa-microphone"></i>}
-          </button>
-        </div>
-        
+        <input
+          type="text"
+          value={chatInput}
+          onChange={(e) => setChatInput(e.target.value)}
+          placeholder="Ask me anything..."
+          style={{ background: 'transparent', border: 'none', color: 'var(--text-main)', outline: 'none', fontSize: '0.9rem' }}
+        />
+        <button
+          type="button"
+          onClick={handleDictate}
+          className={`w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer shrink-0 ${isMicActive ? "animate-pulse" : ""}`}
+          style={{ background: 'transparent', border: 'none', color: isMicActive ? 'var(--neon-magenta)' : 'var(--text-muted)' }}
+          title="Voice Input"
+        >
+          {isMicActive ? <i className="fa-solid fa-square"></i> : <i className="fa-solid fa-microphone"></i>}
+        </button>
         <button
           type="submit"
           disabled={isStreaming || !chatInput.trim()}
-          className="w-[46px] h-[46px] rounded-full flex items-center justify-center transition cursor-pointer disabled:opacity-50 shrink-0"
-          style={{ backgroundColor: 'var(--primary-blue)', color: '#ffffff', fontSize: '1.1rem', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
+          className="w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer disabled:opacity-50 shrink-0"
+          style={{ backgroundColor: 'var(--primary-blue)', color: '#ffffff', border: 'none' }}
         >
-          <i className="fa-solid fa-paper-plane"></i>
+          <i className="fa-solid fa-paper-plane" style={{ fontSize: '0.8rem' }}></i>
         </button>
       </form>
     </div>

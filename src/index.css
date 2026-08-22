@@ -2723,3 +2723,152 @@ body.light-mode .auth-input-wrapper-cyber:focus-within {
     background: rgba(2, 132, 199, 0.01) !important;
     box-shadow: 0 0 8px rgba(2, 132, 199, 0.12) !important;
 }
+
+/* ================= SULABHA ASSISTANT WIDGET CSS ================= */
+.sulabha-drawer {
+  position: fixed;
+  right: 20px;
+  bottom: 92px;                 /* clears the FAB button below it */
+  width: min(380px, calc(100vw - 32px));
+  height: min(560px, calc(100vh - 140px));
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 17, 28, 0.98);   /* fully opaque — no bleed-through */
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+  overflow: hidden;             /* clips children to the rounded corners */
+  z-index: 1000;
+}
+
+body.light-mode .sulabha-drawer {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+}
+
+.sulabha-header {
+  flex: 0 0 auto;                /* fixed height, never shrinks/scrolls */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+body.light-mode .sulabha-header {
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+
+.sulabha-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sulabha-close-btn {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.sulabha-close-btn:hover {
+  color: var(--neon-magenta);
+}
+
+.sulabha-messages {
+  flex: 1 1 auto;                /* takes remaining space */
+  overflow-y: auto;              /* scrolls instead of pushing input off-screen */
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sulabha-input-row {
+  flex: 0 0 auto;                /* pinned to bottom of the drawer, not the viewport */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+}
+
+body.light-mode .sulabha-input-row {
+  border-top-color: rgba(0,0,0,0.08);
+}
+
+.sulabha-input-row input {
+  flex: 1;
+  min-width: 0;                  /* prevents input from overflowing the row */
+}
+
+/* Toggle button — its own corner, independent of the drawer */
+.sulabha-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  z-index: 1001;                 /* above the drawer, so it's always clickable to close/reopen */
+  background: #00a884;           /* WhatsApp style green */
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 168, 132, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.sulabha-fab:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 168, 132, 0.5);
+}
+
+/* Back-to-top — stacked ABOVE the fab */
+.sulabha-back-to-top {
+  position: fixed;
+  right: 26px;
+  bottom: 90px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  z-index: 999;
+  background: var(--card-hover-bg);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.2s, color 0.2s, border-color 0.2s;
+}
+
+@media (max-width: 480px) {
+  .sulabha-drawer {
+    right: 10px;
+    left: 10px;
+    width: auto;
+    bottom: 80px;
+  }
+}

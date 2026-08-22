@@ -12,6 +12,7 @@ export default function TopNavbar({
   voiceGuidanceEnabled,
   setVoiceGuidanceEnabled,
   speakFeedback,
+  isAuthenticated,
   isClerkActive = false,
   clerkUserButton = null
 }) {
