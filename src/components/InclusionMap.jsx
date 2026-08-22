@@ -79,7 +79,7 @@ export default function InclusionMap({ lang = 'en', t }) {
 
     map.on('load', async () => {
       try {
-        const res = await fetch('/india-states.geojson');
+        const res = await fetch('./india-states.geojson');
         const geojson = await res.json();
 
         map.addSource('india-states', {

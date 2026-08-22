@@ -9,66 +9,66 @@ export default function ExploreReels({ t, speakFeedback }) {
   const reels = [
     {
       id: "web-a11y",
-      videoId: "3f31oufqFSM", // Introduction to Web Accessibility
-      title: "What is Web Accessibility?",
+      videoId: "20SHvU2PKsM", // W3C Introduction to Web Accessibility
+      title: "Introduction to Web Accessibility",
       desc: "An introduction to why designing for everyone matters.",
       hashtags: "#a11y #inclusion",
       category: "Basics"
     },
     {
-      id: "screen-reader",
-      videoId: "dEbl5jvLKGQ", // How a screen reader works
-      title: "Screen Readers Explained",
-      desc: "Watch how a blind user navigates a website using a screen reader.",
-      hashtags: "#screenreader #blind",
+      id: "keyboard-compat",
+      videoId: "OQGpqltSju8", // W3C Keyboard Compatibility
+      title: "Keyboard Compatibility",
+      desc: "Why keyboard navigation is essential for users with motor disabilities.",
+      hashtags: "#keyboard #accessibility",
       category: "Assistive Tech"
     },
     {
-      id: "colorblind",
-      videoId: "v=y3hR3c0z_x8", // Colorblindness
-      title: "Designing for Colorblindness",
-      desc: "Understanding how different types of color vision deficiency affect perception.",
-      hashtags: "#colorblind #design",
+      id: "color-contrast",
+      videoId: "wiW_2tQ1Y28", // W3C Colors with Good Contrast
+      title: "Colors with Good Contrast",
+      desc: "Understanding how good contrast helps people with visual impairments.",
+      hashtags: "#contrast #design",
       category: "Vision"
     },
     {
-      id: "sign-lang",
-      videoId: "v=Vv_u-R45H-8", // Indian Sign Language
-      title: "Indian Sign Language Basics",
-      desc: "Learn the alphabet and basic greetings in Indian Sign Language (ISL).",
-      hashtags: "#ISL #deaf",
-      category: "Language"
-    },
-    {
-      id: "dyslexia",
-      videoId: "zafiGBrFkRM", // Dyslexia simulation
-      title: "What is Dyslexia?",
-      desc: "A simulation of how reading feels for someone with dyslexia.",
-      hashtags: "#dyslexia #learning",
+      id: "clear-layout",
+      videoId: "pP1rQ05B4O8", // W3C Clear Layout and Design
+      title: "Clear Layout and Design",
+      desc: "How clear, consistent design helps people with cognitive disabilities.",
+      hashtags: "#design #usability",
       category: "Cognitive"
     },
     {
+      id: "video-captions",
+      videoId: "8Z3YnL0U0Hw", // W3C Video Captions
+      title: "Video Captions",
+      desc: "Captions are essential for deaf users, and helpful for everyone else.",
+      hashtags: "#captions #deaf",
+      category: "Hearing"
+    },
+    {
       id: "voice-control",
-      videoId: "v=Q6zK-TfH_wA", // Voice control
-      title: "Navigating with Voice",
-      desc: "How motor-impaired users control computers entirely with their voice.",
+      videoId: "l93W79qM2vU", // W3C Voice Recognition
+      title: "Voice Recognition",
+      desc: "How users control computers and write text using only their voice.",
       hashtags: "#voicecontrol #motor",
       category: "Assistive Tech"
     },
     {
-      id: "rpwd-act",
-      videoId: "v=B_97G_r0eMw", // RPWD Act
-      title: "RPWD Act 2016",
-      desc: "Understanding the Rights of Persons with Disabilities Act in India.",
-      hashtags: "#rights #india",
-      category: "Law"
+      id: "text-to-speech",
+      videoId: "Xo-Vn1yKq7I", // W3C Text to Speech
+      title: "Text to Speech",
+      desc: "Watch how a blind user navigates a website using a screen reader.",
+      hashtags: "#screenreader #blind",
+      category: "Vision"
     },
     {
-      id: "inclusive-design",
-      videoId: "bVdPN5CJ0zU", // Inclusive Design
-      title: "The Power of Inclusive Design",
-      desc: "When we design for disability, we all benefit.",
-      hashtags: "#inclusivedesign #ux",
+      id: "customizable-text",
+      videoId: "Fq1zVq_yFKI", // W3C Customizable Text
+      title: "Customizable Text",
+      desc: "Why allowing users to change fonts and spacing is important.",
+      hashtags: "#fonts #vision",
       category: "Design"
     }
   ];
