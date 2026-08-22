@@ -26,7 +26,7 @@ export default function ChatBotWidget({
   const [chatLog, setChatLog] = useState([
     {
       sender: "bot",
-      text: "Hello! I am your AURA accessibility & navigation assistant powered by Groq. How can I help you explore schemes, state data, or navigate the app?",
+      text: "Hello! I am your SULABHA accessibility & navigation assistant powered by Groq. How can I help you explore schemes, state data, or navigate the app?",
     },
   ]);
   const [isMicActive, setIsMicActive] = useState(false);
@@ -94,7 +94,7 @@ export default function ChatBotWidget({
       history.unshift({
         role: "system",
         content:
-          "You are AURA, an AI navigation and accessibility assistant for an Indian inclusive platform covering disability schemes (ADIP, UDID, etc.), assistive tech, banking, and healthcare. Keep answers concise (2-3 sentences max). If the user asks to open a feature (e.g., 'open map', 'open reader', 'make text bigger'), confirm the action clearly.",
+          "You are SULABHA, an AI navigation and accessibility assistant for an Indian inclusive platform covering disability schemes (ADIP, UDID, etc.), assistive tech, banking, and healthcare. Keep answers concise (2-3 sentences max). If the user asks to open a feature (e.g., 'open map', 'open reader', 'make text bigger'), confirm the action clearly.",
       });
 
       history.push({ role: "user", content: textToSend });
@@ -212,76 +212,76 @@ export default function ChatBotWidget({
   };
 
   return (
-    <div className="w-full h-full flex flex-col overflow-hidden text-white bg-slate-900 border border-indigo-500/40 rounded-2xl shadow-2xl" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="w-full h-full flex flex-col overflow-hidden shadow-2xl" style={{ fontFamily: 'Inter, sans-serif', background: 'var(--card-bg)', borderRadius: '24px', border: '1px solid var(--border-color)' }}>
+      
       {/* Header */}
-      <div className="p-3 bg-slate-800/90 border-b border-slate-700 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-2">
-          <span className="text-xl">🤖</span>
-          <div className="text-left">
-            <h3 className="text-xs font-bold text-indigo-400 leading-tight">AURA AI Assistant</h3>
-            <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              Groq Real-time
-            </span>
+      <div className="pt-8 px-4 pb-4 flex flex-col items-center shrink-0 border-b border-transparent relative" style={{ borderBottomColor: 'rgba(255,255,255,0.05)' }}>
+        <button
+          onClick={() => setAutoAudio(!autoAudio)}
+          className="absolute top-4 left-4 w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer text-xs"
+          style={{ background: 'var(--card-hover-bg)', color: autoAudio ? 'var(--primary-blue)' : 'var(--text-muted)' }}
+          title={autoAudio ? "Auto-speak ON" : "Auto-speak OFF"}
+        >
+          {autoAudio ? <i className="fa-solid fa-volume-high"></i> : <i className="fa-solid fa-volume-xmark"></i>}
+        </button>
+        <div className="flex items-center gap-2 mb-2 mt-2">
+          <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px]" style={{ background: 'var(--primary-blue)', color: '#ffffff' }}>
+            <i className="fa-solid fa-robot"></i>
           </div>
+          <h3 className="text-lg font-bold" style={{ color: 'var(--primary-blue)' }}>SULABHA Assistant</h3>
         </div>
-        <div className="flex items-center gap-1.5">
-          <button
-            onClick={() => setAutoAudio(!autoAudio)}
-            className={`px-2 py-1 rounded text-xs transition border ${
-              autoAudio
-                ? "bg-indigo-600/30 text-indigo-300 border-indigo-500"
-                : "bg-slate-800 border-slate-700 text-slate-400 hover:text-white"
-            }`}
-            title={autoAudio ? "Auto-speak ON" : "Auto-speak OFF"}
-          >
-            {autoAudio ? "🔊" : "🔇"}
-          </button>
+        <div className="text-center px-4 py-2 rounded-xl text-xs leading-relaxed" style={{ background: 'var(--card-hover-bg)', color: 'var(--text-muted)' }}>
+          I can answer all your questions.<br/>(Ask me anything)
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-2.5 text-xs text-left bg-slate-950/40">
+      <div className="flex-1 overflow-y-auto p-4 space-y-5 text-[0.9rem] text-left no-scrollbar" style={{ overflowX: 'hidden' }}>
         {chatLog.map((m, idx) => (
           <div
             key={idx}
-            className={`flex flex-col ${
-              m.sender === "user" ? "items-end" : "items-start"
-            }`}
+            className={`flex flex-col ${m.sender === "user" ? "items-end" : "items-start"}`}
           >
-            <div
-              className={`p-2.5 rounded-2xl max-w-[85%] leading-relaxed ${
-                m.sender === "user"
-                  ? "bg-indigo-600 text-white rounded-br-none"
-                  : "bg-slate-800 text-slate-200 border border-slate-700 rounded-bl-none"
-              }`}
-            >
-              {m.text}
-            </div>
-            {m.sender === "bot" && (
-              <button
-                onClick={() => speakText(m.text)}
-                className="text-[10px] text-indigo-400 hover:text-indigo-300 mt-1 flex items-center gap-1 px-1 bg-none border-none cursor-pointer"
+            {m.sender === "user" ? (
+              <div
+                className="p-3.5 leading-relaxed shadow-sm"
+                style={{
+                  backgroundColor: 'var(--primary-blue)',
+                  color: '#ffffff',
+                  borderRadius: '16px',
+                  borderBottomRightRadius: '4px',
+                  maxWidth: '85%'
+                }}
               >
-                🔊 Listen
-              </button>
+                {m.text}
+              </div>
+            ) : (
+              <div className="flex flex-col items-start max-w-[90%]">
+                <div
+                  className="p-4 leading-relaxed"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: 'var(--text-main)',
+                    border: '1.5px solid var(--primary-blue)',
+                    borderRadius: '16px',
+                    borderBottomLeftRadius: '4px',
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
+                  }}
+                >
+                  {m.text}
+                </div>
+                <button
+                  onClick={() => speakText(m.text)}
+                  className="text-[11px] mt-2 flex items-center gap-1.5 px-1 bg-none border-none cursor-pointer"
+                  style={{ color: 'var(--text-muted)', fontWeight: '600' }}
+                >
+                  <i className="fa-solid fa-play" style={{ color: 'var(--primary-blue)' }}></i> Listen
+                </button>
+              </div>
             )}
           </div>
         ))}
         <div ref={messagesEndRef} />
-      </div>
-
-      {/* Quick Reply Suggestions */}
-      <div className="px-2 py-1.5 border-t border-slate-800 bg-slate-900/80 flex gap-1.5 overflow-x-auto no-scrollbar shrink-0">
-        {quickPills.map((pill, idx) => (
-          <button
-            key={idx}
-            onClick={() => handleSend(pill.cmd)}
-            className="shrink-0 px-2.5 py-1 rounded-full bg-slate-800 hover:bg-indigo-950/70 border border-slate-700 text-indigo-300 text-[10px] transition cursor-pointer"
-          >
-            {pill.text}
-          </button>
-        ))}
       </div>
 
       {/* Input Bar */}
@@ -290,33 +290,36 @@ export default function ChatBotWidget({
           e.preventDefault();
           handleSend();
         }}
-        className="p-2 bg-slate-800 border-t border-slate-700 flex items-center gap-1.5 shrink-0"
+        className="p-3 flex items-center gap-2 shrink-0 border-t border-transparent pb-4"
+        style={{ borderTopColor: 'rgba(255,255,255,0.05)', background: 'transparent' }}
       >
-        <button
-          type="button"
-          onClick={handleDictate}
-          className={`p-1.5 rounded border text-xs transition cursor-pointer ${
-            isMicActive
-              ? "bg-rose-600/30 border-rose-500 text-rose-400 animate-pulse"
-              : "bg-slate-700 border-slate-600 text-slate-300 hover:text-white"
-          }`}
-          title="Voice Input"
-        >
-          🎙️
-        </button>
-        <input
-          type="text"
-          value={chatInput}
-          onChange={(e) => setChatInput(e.target.value)}
-          placeholder="Ask AURA anything..."
-          className="flex-1 px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
-        />
+        <div className="flex-1 flex items-center min-w-0 rounded-full px-4 py-3" style={{ background: 'var(--card-hover-bg)', border: '1px solid var(--border-color)' }}>
+          <input
+            type="text"
+            value={chatInput}
+            onChange={(e) => setChatInput(e.target.value)}
+            placeholder="Ask me anything..."
+            className="w-full bg-transparent focus:outline-none min-w-0 text-[0.95rem]"
+            style={{ color: 'var(--text-main)' }}
+          />
+          <button
+            type="button"
+            onClick={handleDictate}
+            className={`ml-2 w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer shrink-0 ${isMicActive ? "animate-pulse" : ""}`}
+            style={{ color: isMicActive ? 'var(--neon-magenta)' : 'var(--text-muted)' }}
+            title="Voice Input"
+          >
+            {isMicActive ? <i className="fa-solid fa-square"></i> : <i className="fa-solid fa-microphone"></i>}
+          </button>
+        </div>
+        
         <button
           type="submit"
-          disabled={isStreaming}
-          className="px-2.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white rounded text-xs font-semibold transition cursor-pointer"
+          disabled={isStreaming || !chatInput.trim()}
+          className="w-[46px] h-[46px] rounded-full flex items-center justify-center transition cursor-pointer disabled:opacity-50 shrink-0"
+          style={{ backgroundColor: 'var(--primary-blue)', color: '#ffffff', fontSize: '1.1rem', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
         >
-          Send
+          <i className="fa-solid fa-paper-plane"></i>
         </button>
       </form>
     </div>

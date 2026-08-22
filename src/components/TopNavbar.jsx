@@ -27,23 +27,18 @@ export default function TopNavbar({
   }, []);
 
   const menuItems = [
-    { id: 'panel-dashboard', labelKey: 'nav-dashboard' },
-    { id: 'panel-explore', labelKey: 'nav-explore' },
-    { id: 'panel-reader', labelKey: 'nav-reader' },
-    { id: 'panel-voice', labelKey: 'nav-voice' },
-    { id: 'panel-map', labelKey: 'nav-map' },
-    { id: 'panel-simulators', labelKey: 'nav-simulators' },
-    { id: 'panel-game', labelKey: 'nav-game' },
-    { id: 'panel-sign', labelKey: 'nav-sign' },
+    { id: 'panel-dashboard', labelKey: 'Home' },
+    { id: 'panel-explore', labelKey: 'Explore' },
+    { id: 'panel-community', labelKey: 'Community' },
   ];
 
   return (
     <nav className="top-navbar">
       
-      <div className="navbar-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+      <div className="navbar-header-row" style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
         {/* Brand Logo Header */}
-        <div className="navbar-logo" onClick={() => { onPanelSwitch("panel-dashboard"); setIsMobileMenuOpen(false); }} style={{ cursor: 'pointer' }}>
-          AURA SUITE
+        <div className="navbar-logo" onClick={() => { onPanelSwitch("panel-dashboard"); setIsMobileMenuOpen(false); }} style={{ cursor: 'pointer', color: 'var(--primary-blue)', background: 'none', WebkitTextFillColor: 'initial' }}>
+          SULABHA
         </div>
 
         {/* Hamburger Toggle Button for Mobile */}
@@ -102,7 +97,7 @@ export default function TopNavbar({
       </div>
 
       {/* Settings & Profile Actions */}
-      <div className="navbar-actions">
+      <div className="navbar-actions" style={{ flex: 1, justifyContent: 'flex-end' }}>
         
         {/* Voice Scrolling Toggler (Microphone) */}
         <button 
@@ -119,16 +114,15 @@ export default function TopNavbar({
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            border: `1.5px solid ${voiceNavEnabled ? 'var(--neon-green)' : 'rgba(255,255,255,0.08)'}`,
-            background: 'rgba(255,255,255,0.02)',
-            color: voiceNavEnabled ? 'var(--neon-green)' : (isDarkMode ? '#94a3b8' : '#64748b'),
+            border: `1px solid ${voiceNavEnabled ? 'var(--primary-blue)' : 'var(--border-color)'}`,
+            background: voiceNavEnabled ? '#e0e7ff' : 'transparent',
+            color: voiceNavEnabled ? 'var(--primary-blue)' : 'var(--text-muted)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
             fontSize: '0.92rem',
             marginRight: '8px',
-            boxShadow: voiceNavEnabled ? '0 0 10px rgba(57, 255, 20, 0.25)' : 'none',
             transition: 'all 0.2s ease'
           }}
         >
@@ -150,16 +144,15 @@ export default function TopNavbar({
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            border: `1.5px solid ${voiceGuidanceEnabled ? 'var(--neon-magenta)' : 'rgba(255,255,255,0.08)'}`,
-            background: 'rgba(255,255,255,0.02)',
-            color: voiceGuidanceEnabled ? 'var(--neon-magenta)' : (isDarkMode ? '#94a3b8' : '#64748b'),
+            border: `1px solid ${voiceGuidanceEnabled ? 'var(--primary-blue)' : 'var(--border-color)'}`,
+            background: voiceGuidanceEnabled ? '#e0e7ff' : 'transparent',
+            color: voiceGuidanceEnabled ? 'var(--primary-blue)' : 'var(--text-muted)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
             fontSize: '0.92rem',
             marginRight: '12px',
-            boxShadow: voiceGuidanceEnabled ? '0 0 10px rgba(255, 0, 127, 0.25)' : 'none',
             transition: 'all 0.2s ease'
           }}
         >
@@ -175,9 +168,9 @@ export default function TopNavbar({
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            border: '1.5px solid rgba(255,255,255,0.08)',
-            background: 'rgba(255,255,255,0.02)',
-            color: isDarkMode ? 'var(--neon-cyan)' : '#475569',
+            border: '1px solid var(--border-color)',
+            background: 'transparent',
+            color: 'var(--text-muted)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -204,9 +197,9 @@ export default function TopNavbar({
               width: '38px',
               height: '38px',
               borderRadius: '50%',
-              border: '2px solid var(--neon-cyan)',
-              background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(255, 0, 127, 0.15))',
-              color: '#ffffff',
+              border: '2px solid var(--primary-blue)',
+              background: '#e0e7ff',
+              color: 'var(--primary-blue)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -220,6 +213,33 @@ export default function TopNavbar({
           </button>
         )}
 
+      </div>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <div className="mobile-bottom-nav">
+        {menuItems.map((item) => {
+          let iconClass = "fa-house";
+          if (item.id === "panel-explore") iconClass = "fa-compass";
+          if (item.id === "panel-community") iconClass = "fa-users";
+          
+          return (
+            <a
+              key={item.id + '-mobile'}
+              href={`#${item.id}`}
+              className={`mobile-bottom-nav-item ${activePanel === item.id ? 'active' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onPanelSwitch(item.id);
+                if (voiceGuidanceEnabled && speakFeedback) {
+                  speakFeedback(`Navigating to ${item.labelKey}`);
+                }
+              }}
+            >
+              <i className={`fa-solid ${iconClass}`}></i>
+              {item.labelKey}
+            </a>
+          );
+        })}
       </div>
 
     </nav>

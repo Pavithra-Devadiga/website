@@ -1309,10 +1309,10 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
             width: '100%',
             maxWidth: '400px',
             padding: '36px 30px',
-            background: 'rgba(15, 17, 28, 0.98)',
-            border: '1.5px solid rgba(255, 255, 255, 0.08)',
+            background: 'var(--card-bg)',
+            border: '1.5px solid var(--border-color)',
             borderRadius: '16px',
-            boxShadow: '0 20px 45px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.05)',
+            boxShadow: '0 20px 45px rgba(0, 0, 0, 0.2)',
             display: 'flex',
             flexDirection: 'column',
             gap: '20px',
@@ -1346,8 +1346,8 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
               <>
                 {/* Logo and Titles */}
                 <div style={{ textAlign: 'center' }}>
-                  <h2 style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '1px', color: '#ffffff', marginBottom: '4px', background: 'linear-gradient(90deg, #00f0ff 0%, #ff007f 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                    AURA SUITE
+                  <h2 style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '1px', color: 'var(--primary-blue)', marginBottom: '4px' }}>
+                    SULABHA
                   </h2>
                   <p style={{ fontSize: '0.74rem', color: '#94a3b8' }}>
                     {authMode === "signin" 
@@ -1364,8 +1364,8 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                   gap: '12px',
                   margin: '4px 0',
                   padding: '8px',
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  border: '1.5px solid rgba(255, 255, 255, 0.05)',
+                  background: 'transparent',
+                  border: '1.5px solid var(--border-color)',
                   borderRadius: '10px'
                 }}>
                   {/* Voice Scrolling Toggler (Microphone) */}
@@ -1384,9 +1384,9 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                       gap: '8px',
                       padding: '8px',
                       borderRadius: '6px',
-                      border: `1px solid ${voiceNavEnabled ? 'var(--neon-green)' : 'rgba(255,255,255,0.08)'}`,
-                      background: voiceNavEnabled ? 'rgba(57, 255, 20, 0.05)' : 'rgba(0,0,0,0.15)',
-                      color: voiceNavEnabled ? 'var(--neon-green)' : '#94a3b8',
+                      border: `1px solid ${voiceNavEnabled ? 'var(--neon-green)' : 'var(--border-color)'}`,
+                      background: voiceNavEnabled ? 'rgba(57, 255, 20, 0.05)' : 'var(--card-bg)',
+                      color: voiceNavEnabled ? 'var(--neon-green)' : 'var(--text-muted)',
                       fontSize: '0.72rem',
                       fontWeight: 'bold',
                       cursor: 'pointer',
@@ -1414,9 +1414,9 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                       gap: '8px',
                       padding: '8px',
                       borderRadius: '6px',
-                      border: `1px solid ${voiceGuidanceEnabled ? 'var(--neon-magenta)' : 'rgba(255,255,255,0.08)'}`,
-                      background: voiceGuidanceEnabled ? 'rgba(255, 0, 127, 0.05)' : 'rgba(0,0,0,0.15)',
-                      color: voiceGuidanceEnabled ? 'var(--neon-magenta)' : '#94a3b8',
+                      border: `1px solid ${voiceGuidanceEnabled ? 'var(--neon-magenta)' : 'var(--border-color)'}`,
+                      background: voiceGuidanceEnabled ? 'rgba(255, 0, 127, 0.05)' : 'var(--card-bg)',
+                      color: voiceGuidanceEnabled ? 'var(--neon-magenta)' : 'var(--text-muted)',
                       fontSize: '0.72rem',
                       fontWeight: 'bold',
                       cursor: 'pointer',
@@ -1472,7 +1472,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                         <button 
                           type="submit" 
                           className="primary-btn w-full" 
-                          style={{ marginTop: '4px', padding: '11px', fontSize: '0.8rem', background: 'linear-gradient(90deg, var(--neon-cyan) 0%, var(--neon-magenta) 100%)', color: '#ffffff', border: 'none', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer' }}
+                          style={{ marginTop: '4px', padding: '11px', fontSize: '0.8rem', background: 'var(--primary-blue)', color: '#ffffff', border: 'none', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer' }}
                         >
                           VERIFY ACCOUNT EMAIL
                         </button>
@@ -1481,7 +1481,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                           type="button" 
                           onClick={() => { setAuthForgotPasswordMode(false); setAuthError(""); setResetSuccessMessage(""); setResetStep(1); }}
                           className="secondary-btn w-full"
-                          style={{ padding: '10px', fontSize: '0.76rem', borderRadius: '10px', background: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.08)', color: '#ffffff', cursor: 'pointer' }}
+                          style={{ padding: '10px', fontSize: '0.76rem', borderRadius: '10px', background: 'var(--card-bg)', border: '1px solid var(--border-color)', color: 'var(--text-main)', cursor: 'pointer' }}
                         >
                           Back to Log In
                         </button>
@@ -1515,7 +1515,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                               border: 'none',
                               padding: 0,
                               margin: 0,
-                              color: '#94a3b8',
+                              color: 'var(--text-muted)',
                               cursor: 'pointer',
                               zIndex: 10,
                               display: 'flex',
@@ -1553,8 +1553,8 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                     {/* Tab Toggles for Sign In / Sign Up */}
                     <div style={{
                       display: 'flex',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1.5px solid rgba(255,255,255,0.06)',
+                      background: 'transparent',
+                      border: '1.5px solid var(--border-color)',
                       borderRadius: '10px',
                       padding: '4px',
                       width: '100%'
@@ -1568,8 +1568,8 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                           fontSize: '0.76rem',
                           fontWeight: 'bold',
                           borderRadius: '8px',
-                          background: authMode === "signin" ? 'rgba(255,255,255,0.08)' : 'transparent',
-                          color: authMode === "signin" ? '#ffffff' : '#64748b',
+                          background: authMode === "signin" ? 'var(--primary-blue)' : 'transparent',
+                          color: authMode === "signin" ? '#ffffff' : 'var(--text-muted)',
                           border: 'none',
                           cursor: 'pointer',
                           transition: 'all 0.2s ease'
@@ -1586,8 +1586,8 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                           fontSize: '0.76rem',
                           fontWeight: 'bold',
                           borderRadius: '8px',
-                          background: authMode === "register" ? 'rgba(255,255,255,0.08)' : 'transparent',
-                          color: authMode === "register" ? '#ffffff' : '#64748b',
+                          background: authMode === "register" ? 'var(--primary-blue)' : 'transparent',
+                          color: authMode === "register" ? '#ffffff' : 'var(--text-muted)',
                           border: 'none',
                           cursor: 'pointer',
                           transition: 'all 0.2s ease'
@@ -1629,13 +1629,13 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                         />
                       </div>
                       <div className="auth-input-wrapper-cyber">
-                        <i className="fa-solid fa-key" style={{ color: '#94a3b8', fontSize: '0.85rem', marginRight: '10px' }}></i>
+                        <i className="fa-solid fa-key" style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginRight: '10px' }}></i>
                         <input 
                           type={showPasswordText ? "text" : "password"} 
                           placeholder="Password" 
                           value={authPassword} 
                           onChange={(e) => setAuthPassword(e.target.value)} 
-                          style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', padding: '10px 0', color: '#ffffff', fontSize: '0.8rem' }}
+                          style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', padding: '10px 0', color: 'var(--text-main)', fontSize: '0.8rem' }}
                           required 
                         />
                         <button 
@@ -1646,7 +1646,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                             border: 'none',
                             padding: 0,
                             margin: 0,
-                            color: '#94a3b8',
+                            color: 'var(--text-muted)',
                             cursor: 'pointer',
                             zIndex: 10,
                             display: 'flex',
@@ -1701,7 +1701,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                               placeholder="Confirm Password" 
                               value={authConfirmPassword} 
                               onChange={(e) => setAuthConfirmPassword(e.target.value)} 
-                              style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', padding: '10px 0', color: '#ffffff', fontSize: '0.8rem' }}
+                              style={{ flex: 1, background: 'transparent', border: 'none', outline: 'none', padding: '10px 0', color: 'var(--text-main)', fontSize: '0.8rem' }}
                               required 
                             />
                             <button 
@@ -1762,7 +1762,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
                         borderRadius: '10px',
                         border: '1.5px solid rgba(255, 255, 255, 0.08)',
                         background: 'rgba(255, 255, 255, 0.01)',
-                        color: '#ffffff',
+                        color: 'var(--text-main)',
                         fontSize: '0.8rem',
                         fontWeight: 'bold',
                         cursor: 'pointer',
@@ -1782,8 +1782,8 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
                 <div style={{ textAlign: 'center', marginBottom: '8px' }}>
                   <i className="fa-solid fa-user-astronaut text-accent" style={{ color: 'var(--neon-cyan)', fontSize: '2rem', marginBottom: '8px' }}></i>
-                  <h2 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#ffffff' }}>Account Settings</h2>
-                  <p style={{ fontSize: '0.68rem', color: '#94a3b8' }}>Profile Cryptographic Vault status: Unlocked</p>
+                  <h2 style={{ fontSize: '1.2rem', fontWeight: '800', color: 'var(--text-main)' }}>Account Settings</h2>
+                  <p style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>Profile Cryptographic Vault status: Unlocked</p>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -1876,7 +1876,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
       {isAccessDrawerOpen && (
         <div className="accessibility-side-drawer">
           <div className="drawer-header">
-            <h4><i className="fa-solid fa-universal-access"></i> Accessibility Console</h4>
+            <h4><i className="fa-solid fa-universal-access"></i> {t('a11y-console') || "Accessibility Console"}</h4>
             <button type="button" onClick={() => setIsAccessDrawerOpen(false)} className="compact-close-btn">
               <i className="fa-solid fa-xmark"></i>
             </button>
@@ -1885,19 +1885,19 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
             
             {/* Color Filter */}
             <div className="drawer-group">
-              <label><i className="fa-solid fa-eye"></i> Colorblind Spectrum</label>
+              <label><i className="fa-solid fa-eye"></i> {t('a11y-color') || "Colorblind Spectrum"}</label>
               <select value={colorFilter} onChange={(e) => setColorFilter(e.target.value)}>
-                <option value="none">Normal Spectrum</option>
-                <option value="protanopia">Protanopia (Red-Blind)</option>
-                <option value="deuteranopia">Deuteranopia (Green-Blind)</option>
-                <option value="tritanopia">Tritanopia (Blue-Blind)</option>
-                <option value="achromatopsia">Achromatopsia (Monochrome)</option>
+                <option value="none">{t('a11y-color-none') || "Normal Spectrum"}</option>
+                <option value="protanopia">{t('a11y-color-pro') || "Protanopia (Red-Blind)"}</option>
+                <option value="deuteranopia">{t('a11y-color-deu') || "Deuteranopia (Green-Blind)"}</option>
+                <option value="tritanopia">{t('a11y-color-tri') || "Tritanopia (Blue-Blind)"}</option>
+                <option value="achromatopsia">{t('a11y-color-ach') || "Achromatopsia (Monochrome)"}</option>
               </select>
             </div>
 
             {/* Dyslexia Mode */}
             <div className="drawer-group switch-row-drawer">
-              <label><strong>Dyslexia Layout Font</strong></label>
+              <label><strong>{t('a11y-dyslexia') || "Dyslexia Layout Font"}</strong></label>
               <label className="switch">
                 <input type="checkbox" checked={dyslexiaMode} onChange={(e) => setDyslexiaMode(e.target.checked)} />
                 <span className="slider"></span>
@@ -1906,7 +1906,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
 
             {/* Voice Scrolling */}
             <div className="drawer-group switch-row-drawer">
-              <label><strong>Voice Navigation Scrolling</strong></label>
+              <label><strong>{t('a11y-voice') || "Voice Navigation Scrolling"}</strong></label>
               <label className="switch">
                 <input type="checkbox" checked={voiceNavEnabled} onChange={(e) => setVoiceNavEnabled(e.target.checked)} />
                 <span className="slider"></span>
@@ -1915,7 +1915,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
 
             {/* Text Sizing */}
             <div className="drawer-group">
-              <label><i className="fa-solid fa-magnifying-glass-plus"></i> Text Magnification</label>
+              <label><i className="fa-solid fa-magnifying-glass-plus"></i> {t('a11y-text') || "Text Magnification"}</label>
               <div className="drawer-scale-adjuster">
                 <button type="button" onClick={() => setFontScale(Math.max(100, fontScale - 10))}>A-</button>
                 <span>{fontScale}%</span>
@@ -1925,7 +1925,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
 
             {/* Language Selection */}
             <div className="drawer-group">
-              <label><i className="fa-solid fa-language"></i> Language</label>
+              <label><i className="fa-solid fa-language"></i> {t('a11y-lang') || "Language"}</label>
               <div className="drawer-lang-buttons">
                 <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>English</button>
                 <button className={lang === 'hi' ? 'active' : ''} onClick={() => setLang('hi')}>हिन्दी</button>
@@ -1949,6 +1949,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
             setVoiceNavEnabled={setVoiceNavEnabled}
             voiceGuidanceEnabled={voiceGuidanceEnabled}
             speakFeedback={speakFeedback}
+            isDarkMode={isDarkMode}
           />
         </div>
 
@@ -2028,6 +2029,18 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
           >
             <i className="fa-solid fa-chevron-up"></i>
           </button>
+          
+          {/* Floating Go Back button (only visible when not on dashboard) */}
+          {activePanel !== 'panel-dashboard' && (
+            <button 
+              type="button" 
+              className="floating-go-back-btn" 
+              onClick={() => handlePanelSwitch('panel-dashboard')} 
+              title="Go Back to Dashboard"
+            >
+              <i className="fa-solid fa-arrow-left-long"></i>
+            </button>
+          )}
         </>
       )}
 
