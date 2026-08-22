@@ -28,11 +28,13 @@ export default function TopNavbar({
 
   const menuItems = [
     { id: 'panel-dashboard', labelKey: 'nav-dashboard' },
+    { id: 'panel-explore', labelKey: 'nav-explore' },
     { id: 'panel-reader', labelKey: 'nav-reader' },
     { id: 'panel-voice', labelKey: 'nav-voice' },
     { id: 'panel-map', labelKey: 'nav-map' },
     { id: 'panel-simulators', labelKey: 'nav-simulators' },
-    { id: 'panel-game', labelKey: 'nav-game' }
+    { id: 'panel-game', labelKey: 'nav-game' },
+    { id: 'panel-sign', labelKey: 'nav-sign' },
   ];
 
   return (

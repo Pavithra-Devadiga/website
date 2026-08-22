@@ -3,11 +3,13 @@ import translations from './i18n';
 import { hashPassword, encryptPayload, decryptPayload, generateRandomBytes, bytesToHex } from './cryptoUtils';
 import TopNavbar from './components/TopNavbar';
 import Dashboard from './components/Dashboard';
-import DocumentReader from './components/DocumentReader';
+import ExploreReels from './components/ExploreReels';
+import SmartDoc from './components/SmartDoc/SmartDoc';
 import VoiceSuite from './components/VoiceSuite';
 import InclusionMap from './components/InclusionMap';
 import Simulators from './components/Simulators';
 import GullyGame from './components/GullyGame';
+import SignDigitRecognizer from './components/SignDigitRecognizer';
 import ChatBotWidget from './components/ChatBotWidget';
 import DynamicBackground from './components/DynamicBackground';
 
@@ -760,6 +762,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
     setActivePanel(panelId);
 
     let title = "Dashboard";
+    if (panelId === "panel-explore") title = "Explore";
     if (panelId === "panel-reader") title = "Document Reader";
     if (panelId === "panel-voice") title = "Voice Suite";
     if (panelId === "panel-map") title = "Inclusion Map";
@@ -822,6 +825,10 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
     if (text.includes("open simulator") || text.includes("simulators")) {
       handlePanelSwitch("panel-simulators");
       return "Routing visual feeds to simulation filters and hand gesture camera sensors.";
+    }
+    if (text.includes("open sign") || text.includes("sign language") || text.includes("digits")) {
+      handlePanelSwitch("panel-sign");
+      return "Opening the webcam Sign Language Digit Recognizer. Ready for hand gesture inputs.";
     }
     if (text.includes("open game") || text.includes("cricket") || text.includes("play")) {
       handlePanelSwitch("panel-game");
@@ -1945,8 +1952,12 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
           />
         </div>
 
+        <div className={`workspace-panel ${activePanel === 'panel-explore' ? 'active' : ''}`}>
+          <ExploreReels t={t} speakFeedback={speakFeedback} />
+        </div>
+
         <div className={`workspace-panel ${activePanel === 'panel-reader' ? 'active' : ''}`}>
-          <DocumentReader t={t} lang={lang} speakFeedback={speakFeedback} />
+          <SmartDoc t={t} lang={lang} speakFeedback={speakFeedback} />
         </div>
 
         <div className={`workspace-panel ${activePanel === 'panel-voice' ? 'active' : ''}`}>
@@ -1963,6 +1974,10 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
 
         <div className={`workspace-panel ${activePanel === 'panel-game' ? 'active' : ''}`}>
           <GullyGame t={t} isAuthenticated={isAuthenticated} speakFeedback={speakFeedback} activePanel={activePanel} />
+        </div>
+
+        <div className={`workspace-panel ${activePanel === 'panel-sign' ? 'active' : ''}`}>
+          <SignDigitRecognizer speakFeedback={speakFeedback} />
         </div>
 
       </main>
@@ -1984,12 +1999,12 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
 
           {/* Floating Glass Chat Drawer */}
           {isFloatingChatOpen && (
-            <div className="floating-chat-drawer">
-              <div style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: '6px' }}>
+            <div className="floating-chat-drawer" style={{ padding: '0px', overflow: 'hidden' }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'absolute', top: '10px', right: '10px', zIndex: 10 }}>
                 <button 
                   type="button" 
                   className="compact-btn" 
-                  style={{ padding: '2px 8px', borderColor: 'var(--neon-magenta)', color: 'var(--neon-magenta)' }}
+                  style={{ padding: '2px 8px', borderColor: 'var(--neon-magenta)', color: 'var(--neon-magenta)', background: 'rgba(15,18,36,0.8)' }}
                   onClick={() => setIsFloatingChatOpen(false)}
                 >
                   <i className="fa-solid fa-xmark"></i> Close

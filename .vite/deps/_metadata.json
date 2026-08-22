@@ -1,0 +1,46 @@
+{
+  "hash": "2ae14f03",
+  "configHash": "8462c0ac",
+  "lockfileHash": "d5f98e9c",
+  "browserHash": "077aef56",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "f44d8ec3",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "d65392f6",
+      "needsInterop": true
+    },
+    "maplibre-gl": {
+      "src": "../../node_modules/maplibre-gl/dist/maplibre-gl.mjs",
+      "file": "maplibre-gl.js",
+      "fileHash": "ee19383c",
+      "needsInterop": false
+    },
+    "tesseract.js": {
+      "src": "../../node_modules/tesseract.js/src/index.js",
+      "file": "tesseract__js.js",
+      "fileHash": "9417d3c5",
+      "needsInterop": true
+    },
+    "pdfjs-dist": {
+      "src": "../../node_modules/pdfjs-dist/build/pdf.mjs",
+      "file": "pdfjs-dist.js",
+      "fileHash": "808bec95",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-FUP3VBD5": {
+      "file": "chunk-FUP3VBD5.js"
+    },
+    "chunk-DAMQX2IH": {
+      "file": "chunk-DAMQX2IH.js"
+    }
+  }
+}
