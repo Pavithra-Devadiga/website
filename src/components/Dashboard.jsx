@@ -6,7 +6,9 @@ export default function Dashboard({
   t, 
   onPanelSwitch, 
   voiceNavEnabled, 
-  setVoiceNavEnabled 
+  setVoiceNavEnabled,
+  voiceGuidanceEnabled,
+  speakFeedback
 }) {
   
   const cards = [
@@ -66,25 +68,6 @@ export default function Dashboard({
           <p className="hero-desc">
             An immersive platform for cognitive accessibility, empowering disabled citizens with real-time multilingual document simplification, hands-free voice form filling, and spatial street cricket.
           </p>
-          
-          <div className="hero-actions-row">
-            <button 
-              type="button" 
-              onClick={() => onPanelSwitch("panel-reader")} 
-              className="primary-btn hero-btn"
-            >
-              Launch Reader
-            </button>
-            
-            <button 
-              type="button" 
-              onClick={() => setVoiceNavEnabled(!voiceNavEnabled)} 
-              className={`secondary-btn hero-btn ${voiceNavEnabled ? 'btn-cyan' : ''}`}
-            >
-              <i className="fa-solid fa-microphone" style={{ marginRight: '6px' }}></i>
-              {voiceNavEnabled ? "Voice Active" : "Voice Navigation"}
-            </button>
-          </div>
         </div>
 
         {/* Right Hero Interactive 3D Cube */}
@@ -109,6 +92,11 @@ export default function Dashboard({
               key={card.id} 
               className={`theme-cyber-card ${card.themeClass}`}
               onClick={() => onPanelSwitch(card.id)}
+              onMouseEnter={() => {
+                if (voiceGuidanceEnabled && speakFeedback) {
+                  speakFeedback(`${t(card.titleKey)}. ${t(card.descKey)}`);
+                }
+              }}
             >
               <div className="theme-card-badge-row">
                 <div className="theme-card-icon-box">
