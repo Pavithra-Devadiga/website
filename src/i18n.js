@@ -1,6 +1,7 @@
 const translations = {
     en: {
         "nav-dashboard": "Dashboard",
+        "nav-explore": "Explore",
         "nav-reader": "Document Reader",
         "nav-voice": "Voice Suite",
         "nav-map": "Inclusion Map",
@@ -43,6 +44,7 @@ const translations = {
     },
     hi: {
         "nav-dashboard": "डैशबोर्ड",
+        "nav-explore": "एक्सप्लोर",
         "nav-reader": "दस्तावेज़ पाठक",
         "nav-voice": "आवाज सुइट",
         "nav-map": "समावेश मानचित्र",
@@ -85,6 +87,7 @@ const translations = {
     },
     kn: {
         "nav-dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+        "nav-explore": "ಅನ್ವೇಷಿಸಿ",
         "nav-reader": "ಡಾಕ್ಯುಮೆಂಟ್ ರೀಡರ್",
         "nav-voice": "ಧ್ವನಿ ಸೂಟ್",
         "nav-map": "ಸಮಾವೇಶ ನಕ್ಷೆ",

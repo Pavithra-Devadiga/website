@@ -11,6 +11,7 @@ export default function TopNavbar({
   
   const menuItems = [
     { id: 'panel-dashboard', labelKey: 'nav-dashboard' },
+    { id: 'panel-explore', labelKey: 'nav-explore' },
     { id: 'panel-reader', labelKey: 'nav-reader' },
     { id: 'panel-voice', labelKey: 'nav-voice' },
     { id: 'panel-map', labelKey: 'nav-map' },

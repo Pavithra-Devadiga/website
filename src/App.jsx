@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import translations from './i18n';
 import TopNavbar from './components/TopNavbar';
 import Dashboard from './components/Dashboard';
+import ExploreReels from './components/ExploreReels';
 import SmartDoc from './components/SmartDoc/SmartDoc';
 import VoiceSuite from './components/VoiceSuite';
 import InclusionMap from './components/InclusionMap';
@@ -264,6 +265,7 @@ export default function App() {
     setActivePanel(panelId);
 
     let title = "Dashboard";
+    if (panelId === "panel-explore") title = "Explore";
     if (panelId === "panel-reader") title = "Document Reader";
     if (panelId === "panel-voice") title = "Voice Suite";
     if (panelId === "panel-map") title = "Inclusion Map";
@@ -620,6 +622,10 @@ export default function App() {
             voiceNavEnabled={voiceNavEnabled}
             setVoiceNavEnabled={setVoiceNavEnabled}
           />
+        </div>
+
+        <div className={`workspace-panel ${activePanel === 'panel-explore' ? 'active' : ''}`}>
+          <ExploreReels t={t} speakFeedback={speakFeedback} />
         </div>
 
         <div className={`workspace-panel ${activePanel === 'panel-reader' ? 'active' : ''}`}>
