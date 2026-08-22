@@ -1844,9 +1844,7 @@ export default function App({ isClerkActive = false, clerkUser = null, clerkSign
         activePanel={activePanel} 
         onPanelSwitch={handlePanelSwitch} 
         t={t}
-        openAuthModal={() => {
-          setShowAuthModal(true);
-        }}
+        openAuthModal={() => setShowAuthModal(true)}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
         voiceNavEnabled={voiceNavEnabled}
